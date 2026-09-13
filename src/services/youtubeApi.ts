@@ -168,10 +168,15 @@ export async function getYouTubeTrackById(videoId: string): Promise<Track | null
 }
 
 /**
- * Resolve track query using Gemini 3.5 Flash for authentic YouTube matching
+ * Resolve track query using Gemini for authentic YouTube matching
  */
 export async function resolveAiTrackQuery(title: string, artist: string): Promise<string> {
+  const primaryArtist = (artist || '').split(/[,&x/|-]/)[0].trim();
   const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
+  if (!GEMINI_API_KEY || GEMINI_API_KEY.includes('your_gemini_api_key')) {
+    return `${title} ${primaryArtist}`.trim();
+  }
+
   try {
     const prompt = `Given track: Title "${title}", Artist "${artist}". What is the best search query to find the official music video on YouTube? Respond with a single plain-text query line only.`;
     const controller = new AbortController();
@@ -194,8 +199,7 @@ export async function resolveAiTrackQuery(title: string, artist: string): Promis
   } catch {
     // Silently continue to standard search
   }
-  const primaryArtist = artist.split(/[,&x/|-]/)[0].trim();
-  return `${title} ${primaryArtist}`;
+  return `${title} ${primaryArtist}`.trim();
 }
 
 /**
