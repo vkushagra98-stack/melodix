@@ -181,7 +181,7 @@ export async function resolveAiTrackQuery(title: string, artist: string): Promis
     const prompt = `Given track: Title "${title}", Artist "${artist}". What is the best search query to find the official music video on YouTube? Respond with a single plain-text query line only.`;
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 2000);
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`, {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-8b:generateContent?key=${GEMINI_API_KEY}`, {
       method: 'POST',
       signal: controller.signal,
       headers: { 'Content-Type': 'application/json' },

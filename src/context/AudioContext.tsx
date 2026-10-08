@@ -644,7 +644,7 @@ export const AudioProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setIsPlaying(true);
 
       // Background: silently fetch + cache InnerTube stream URL (no await — non-blocking)
-      fetch(`/.netlify/functions/stream?id=${effectiveTrack.youtubeVideoId}`)
+      fetch(`/.netlify/functions/stream?id=${effectiveTrack.youtubeVideoId}&title=${encodeURIComponent(effectiveTrack.title)}&artist=${encodeURIComponent(effectiveTrack.artist)}`)
         .then((r) => r.ok ? r.json() : null)
         .then((data) => {
           // Just cache it — will be used next time user plays this track
