@@ -35,7 +35,7 @@ const INNERTUBE_CLIENTS = [
 
 const SAAVN_BASES = [
   'https://saavn-api-eight.vercel.app',
-  'https://saavn.me',
+  'https://saavn-api-ten.vercel.app',
 ];
 
 /**

@@ -4,7 +4,7 @@ import { decodeHtmlEntities, DEFAULT_ARTWORK, formatDuration } from '../utils/fo
 // List of fallback API base URLs in order of preference
 const SAAVN_BASE_URLS = [
   'https://saavn-api-eight.vercel.app',
-  'https://saavn.me',
+  'https://saavn-api-ten.vercel.app', // Additional fallback
 ];
 
 interface SaavnImage {
